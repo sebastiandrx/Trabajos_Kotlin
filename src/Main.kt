@@ -81,11 +81,11 @@ fun main() {
                 println("Monedas de 100: $m100")
                 println("Monedas de 200: $m200")
                 println("Monedas de 500: $m500")
-                println("Total de monedas: ${m50 + m20 + m100 + m200 + m500}")
+                println("Total de monedas: ${m20 + m50 + m100 + m200 + m500}")
             }
 
             3 -> {
-                val total = (m50 * 50) + (m20 * 20) + (m100 * 100) + (m200 * 200) + (m500 * 500)
+                val total = (m20 * 20) + (m50 * 50) + (m100 * 100) + (m200 * 200) + (m500 * 500)
 
                 println("\n TU DINERO AHORRADO ")
                 println("Valor monedas de 20: ${m20 * 20}")
