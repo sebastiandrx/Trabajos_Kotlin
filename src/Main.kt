@@ -1,48 +1,49 @@
 fun main() {
-        var intentosFallidos = 0
-        val maximoIntentos = 3
 
-        println("CONTROL DE ACCESO")
+    print("Introduce la cantidad de dinero inicial: ")
+    var dinero = readLine()?.toDoubleOrNull() ?: run {
+        println("Entrada inválida, usando 100 como valor predeterminado")
+        100.0
+    }
 
-        while (intentosFallidos < maximoIntentos) {
-            print("Ingresa tu código de acceso: ")
-            val codigoIngresado = readLine()?.toIntOrNull()
+    var jugando = true
 
-            if (codigoIngresado == null) {
-                println("Por favor, ingresa un código numérico válido.")
-                continue
-            }
+    while (jugando && dinero > 0) {
+        println("Tu dinero actual: $dinero")
 
-            if (codigoIngresado in 1000..1999) {
-                println("¡Bienvenido, Empleado #$codigoIngresado!")
-                println("Acceso concedido.")
-                break
-            }
+        val numero = (1..3).random()
+        println("Ha salido el número $numero")
 
-            else if (codigoIngresado in 2000..2999) {
-                println("Bienvenido, Visitante #$codigoIngresado")
 
-                print("Por favor, ingrese su nombre: ")
-                val nombre = readLine() ?: ""
+        when (numero) {
+            1 -> {
+                dinero *= 2
+                println("¡Has duplicado tu dinero! Ahora tienes $dinero")
 
-                print("Motivo de la visita: ")
-                val motivo = readLine() ?: ""
-
-                println("Gracias $nombre. Motivo de visita: $motivo")
-                println("Acceso concedido como visitante.")
-                break
-            }
-            else {
-                intentosFallidos++
-                val intentosRestantes = maximoIntentos - intentosFallidos
-
-                if (intentosRestantes > 0) {
-                    println("Código incorrecto. Te quedan $intentosRestantes intentos.")
-                } else {
-                    println("Acceso bloqueado. Haz excedido el número máximo de intentos.")
+                print("¿Quieres seguir jugando? (s/n): ")
+                val respuesta = readLine() ?: ""
+                if (respuesta.lowercase() != "s") {
+                    jugando = false
                 }
+            }
+            2 -> {
+                dinero /= 2
+                println("Has perdido la mitad de tu dinero. Ahora tienes $dinero")
+
+                print("¿Quieres seguir jugando? (s/n): ")
+                val respuesta = readLine() ?: ""
+                if (respuesta.lowercase() != "s") {
+                    jugando = false
+                }
+            }
+            else -> { // numero == 3
+                dinero = 0.0
+                println("Has perdido todo tu dinero.")
+                jugando = false
             }
         }
     }
 
+    println("Juego terminado. Te vas con $dinero")
+}
 
